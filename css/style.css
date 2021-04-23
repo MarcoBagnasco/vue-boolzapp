@@ -26,6 +26,25 @@ i{
     margin-right: 15px;
     border-radius: 50%;
 }
+/* Message */
+.message{
+    position: relative;
+    width: 40%;
+    padding: 12px 15px 22px;
+    background-color: #fff;
+    border-radius: 10px;
+}
+.message.sent{
+    background-color: #ddfabf;
+}
+.message::after{
+    content: '10/01/2021 15:50:00';
+    position: absolute;
+    bottom: 7px;
+    right: 6px;
+    font-size: 0.6rem;
+    color: #bbb
+}
 
 /* LAYOUT */
 .app-container{
@@ -179,7 +198,17 @@ i{
 /* CHAT */
 .app-main .chat{
     flex-grow: 1;
+    padding: 50px 100px 20px;
     background-image: url('../img/mine.jpg');
+    overflow-y: auto;
+}
+.chat .sent-line,
+.chat .received-line{
+    display: flex;
+    margin-bottom: 10px;
+}
+.chat .sent-line{
+    justify-content: flex-end;
 }
 
 /* CHAT FOOTER */
