@@ -23,7 +23,7 @@ i{
 .avatar{
     width: 50px;
     height: 50px;
-    margin-right: 20px;
+    margin-right: 15px;
     border-radius: 50%;
 }
 
@@ -39,6 +39,7 @@ i{
 /**************** LEFT ASIDE ****************/
 .left-aside{
     flex-basis: 35%;
+    border-right: 1px solid #dfdfdf;
 }
 
 /* ASIDE HEADER */
@@ -137,19 +138,52 @@ i{
 .contacts-list .contact .avatar{
     height: 60px;
     width: 60px;
+    margin-right: 20px;
 }
 
+/**************** APP MAIN ****************/
+.app-main{
+    flex-basis: 65%;
+    display: flex;
+    flex-direction: column;
+}
 
+/* CHAT HEADER */
+.app-main .chat-header{
+    flex-basis: 70px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ededed;
+}
+/* Conversation contact */
+.chat-header .conv-contact{
+        display: flex;
+        align-items: center;
+}
+/* Contact Data */
+.conv-contact .contact-data .contact-status{
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: #888; 
+}
 
-
-
-
-
-
-
+/* Chat Header Icons */
+.chat-header .chat-header-icons i{
+    margin-right: 17px
+}
 
 /* CHAT */
-.chat{
-    flex-basis: 65%;
+.app-main .chat{
+    flex-grow: 1;
     background-image: url('../img/mine.jpg');
+}
+
+/* CHAT FOOTER */
+.app-main .chat-footer{
+    flex-basis: 70px;
+    display: flex;
+    align-items: center;
+    background-color: #ededed;
 }
