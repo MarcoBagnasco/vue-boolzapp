@@ -1,5 +1,4 @@
 // VUE INSTANCE
-console.log(Vue);
 const app = new Vue({
     el: '#root',
     data: {

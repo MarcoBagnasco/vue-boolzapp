@@ -20,22 +20,22 @@
 <!-- STYLE -->
 <link rel="stylesheet" href="./css/style.css">
 
-<body>
+<body class="flex jc-center ai-center">
 
-    <div id="root" class="app-container">
+    <div id="root" class="app-container flex">
         <!-- LEFT ASIDE -->
         <aside class="left-aside">
             <!-- ASIDE HEADER -->
             <header class="aside-header">
                 <!-- User -->
-                <div class="user">
+                <div class="user flex jc-between ai-center">
                     <!-- User Avatar -->
-                    <div class="user-avatar">
+                    <div class="user-avatar flex ai-center">
                         <img class="avatar" src="./img/avatar_io.jpg" alt="mine avatar">
                         <span class="user-name">Nome Utente</span>
                     </div>
                     <!-- User Icons -->
-                    <div class="user-icons">
+                    <div class="icons-group user-icons">
                         <a href="#"><i class="fas fa-circle-notch"></i></a>
                         <a href="#"><i class="fas fa-comment-alt"></i></a>
                         <a href="#"><i class="fas fa-ellipsis-v"></i></a>
@@ -43,9 +43,9 @@
                 </div>
     
                 <!-- Notifications -->
-                <div class="notification">
+                <div class="notification flex ai-center">
                     <!-- Bell Icon -->
-                    <i class="fas fa-bell-slash bell"></i>
+                    <i class="fas fa-bell-slash bell flex jc-center ai-center"></i>
                     <!-- Notification Text -->
                     <div class="notification-text">
                         <p>Ricevi notifiche di nuovi messaggi</p>
@@ -55,11 +55,11 @@
 
                 <!-- Search Contacts -->
                 <div class="search-contacts">
-                    <div class="search-bar">
+                    <div class="search-bar flex">
                         <!-- Search Button -->
-                        <div class="search-btn"><i class="fas fa-search"></i></div>
+                        <div class="search-btn flex jc-center ai-center"><i class="fas fa-search"></i></div>
                         <!-- Search Input -->
-                        <input class="search-input" placeholder="Cerca o inizia una nuova chat" type="text">
+                        <input class="input-text search-input" placeholder="Cerca o inizia una nuova chat" type="text">
                     </div>
                 </div>
             </header>
@@ -67,7 +67,7 @@
             <!-- CONTACTS -->
             <section class="contacts">
                 <ul class="contacts-list">
-                    <li v-for="(contact, index) in contacts"class="contact">
+                    <li v-for="(contact, index) in contacts" class="contact flex ai-center">
                         <img class="avatar" :src="'./img/avatar' + contact.avatar + '.jpg'" alt="avatar">
                         <div class="contact-name">{{contact.name}}</div>
                     </li>
@@ -76,11 +76,11 @@
         </aside>
 
         <!-- APP MAIN -->
-        <main class="app-main">
+        <main class="app-main flex">
             <!-- CHAT HEADER -->
-            <header class="chat-header">
+            <header class="chat-header flex jc-between ai-center">
                 <!-- Conversation Contact -->
-                <div class="conv-contact">
+                <div class="conv-contact flex ai-center">
                     <img class="avatar" src="./img/avatar_1.jpg" alt="avatar">
                     <!-- Contact Data -->
                     <div class="contact-data">
@@ -90,7 +90,7 @@
                 </div>
 
                 <!-- Chat Header Icons -->
-                <div class="chat-header-icons">
+                <div class="icons-group chat-header-icons">
                     <a href="#"><i class="fas fa-search"></i></a>
                     <a href="#"><i class="fas fa-paperclip"></i></a>
                     <a href="#"><i class="fas fa-ellipsis-v"></i></a>
@@ -99,21 +99,27 @@
 
             <!-- CHAT -->
             <section class="chat">
-                <div class="sent-line">
-                    <div class="message sent">Messaggio inviato</div>
+                <div class="sent-line flex">
+                    <div class="message sent">
+                        <div class="message-text">Messaggio inviato</div>
+                        <div class="message-time">10/01/2021 15:50:00</div>
+                    </div>
                 </div>
-                <div class="received-line">
-                    <div class="message">Messaggio ricevuto</div>
+                <div class="received-line flex">
+                    <div class="message">
+                        <div class="message-text">Messaggio ricevuto</div>
+                        <div class="message-time">10/01/2021 15:50:00</div>
+                    </div>
                 </div>
             </section>
 
             <!-- CHAT FOOTER -->
-            <footer class="chat-footer">
-                <div class="emoji">
+            <footer class="chat-footer flex ai-center">
+                <div class="emoji flex jc-center ai-center">
                     <a href="#"><i class="far fa-smile"></i></a>
                 </div>
-                <input class="chat-input" type="text" placeholder="Scrivi un messaggio">
-                <div class="phone">
+                <input class="input-text chat-input" type="text" placeholder="Scrivi un messaggio">
+                <div class="phone flex jc-center ai-center">
                     <a href="#"><i class="fas fa-microphone"></i></a>
                 </div>
             </footer>

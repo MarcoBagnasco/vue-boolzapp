@@ -1,4 +1,4 @@
-/* GENERAL */
+/**************** GENERAL ****************/
 *{
     margin: 0;
     padding: 0;
@@ -6,19 +6,41 @@
     font-family: 'Lato', sans-serif;
 }
 body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     font-weight: bold;
     background-image: linear-gradient(to bottom, #32a093 0%, #32a093 15%, #dbe0de 15%, #dbe0de 100%);
 }
-i{
+
+/**************** UTILITIES ****************/
+
+/* Flex */
+.flex{
+    display: flex;
+}
+.jc-center{
+    justify-content: center;
+}
+.jc-between{
+    justify-content: space-between;
+}
+.ai-center{
+    align-items: center;
+}
+
+/* Input Text */
+.input-text{
+    flex-grow: 1;
+    height: 100%;
+    border: 1px solid #f7f7f7;
+}
+
+/* Icons */
+.icons-group a{
+    margin-right: 17px;
     font-size: 1.4rem;
     color: #bababa;
 }
 
-/* UTILITIES */
 /* Avatar */
 .avatar{
     width: 50px;
@@ -26,29 +48,30 @@ i{
     margin-right: 15px;
     border-radius: 50%;
 }
+
 /* Message */
 .message{
     position: relative;
     width: 40%;
-    padding: 12px 15px 22px;
     background-color: #fff;
     border-radius: 10px;
 }
 .message.sent{
     background-color: #ddfabf;
 }
-.message::after{
-    content: '10/01/2021 15:50:00';
-    position: absolute;
-    bottom: 7px;
-    right: 6px;
+.message .message-text{
+    margin-top: 15px;
+    padding: 0 15px;
+}
+.message .message-time{
+    margin: 5px;
+    text-align: right;
     font-size: 0.6rem;
     color: #bbb
 }
 
-/* LAYOUT */
+/* Layout */
 .app-container{
-    display: flex;
     width: 80%;
     min-width: 900px;
     height: 95%;
@@ -64,34 +87,17 @@ i{
 /* ASIDE HEADER */
 /* User */
 .aside-header .user{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 10px;
     background-color: #ededed;
-}
-/* User Avatar */
-.aside-header .user .user-avatar{
-    display: flex;
-    align-items: center;
-}
-/* User Icons */
-.aside-header .user .user-icons i{
-    margin-right: 17px
 }
 
 /* Notification */
 .aside-header .notification{
-    display: flex;
-    align-items: center;
     padding: 15px 20px;
     background-color: #a2dffe;
 }
 /* Bell Icon */
 .notification i.bell{
-    display: flex;
-    align-items: center;
-    justify-content: center;
     width: 50px;
     height: 50px;
     font-size: 1.2rem;
@@ -115,28 +121,23 @@ i{
     background-color: #fbfbfb;
 }
 .search-contacts .search-bar{
-    display: flex;
     height: 36px;
 }
 /* Search Button */
 .search-bar .search-btn{
     flex-basis: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: #fff;
     border: 1px solid #f7f7f7;
     border-right: 0;
     cursor: pointer;
 }
 .search-bar .search-btn i{
-    font-size: 1rem;
+    color: #bababa;
 }
 /* Search Input */
 .search-bar .search-input{
-    flex-grow: 1;
     padding: 10px;
-    border: 1px solid #f7f7f7;
+    border-radius: 3px;
 }
 .search-bar .search-input::placeholder{
     font-size: 0.7rem;
@@ -146,8 +147,6 @@ i{
 
 /* CONTACTS */
 .contacts-list .contact{
-    display: flex;
-    align-items: center;
     height: 80px;
     padding: 10px 20px;
     border-bottom: 1px solid #f2f2f2;
@@ -165,7 +164,6 @@ i{
 /**************** APP MAIN ****************/
 .app-main{
     flex-basis: 65%;
-    display: flex;
     flex-direction: column;
 }
 
@@ -173,26 +171,14 @@ i{
 .app-main .chat-header{
     flex-basis: 70px;
     padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     background-color: #ededed;
 }
-/* Conversation contact */
-.chat-header .conv-contact{
-        display: flex;
-        align-items: center;
-}
+
 /* Contact Data */
 .conv-contact .contact-data .contact-status{
     margin-top: 5px;
     font-size: 0.8rem;
     color: #888; 
-}
-
-/* Chat Header Icons */
-.chat-header .chat-header-icons i{
-    margin-right: 17px
 }
 
 /* CHAT */
@@ -202,9 +188,9 @@ i{
     background-image: url('../img/mine.jpg');
     overflow-y: auto;
 }
+/* Message Line */
 .chat .sent-line,
 .chat .received-line{
-    display: flex;
     margin-bottom: 10px;
 }
 .chat .sent-line{
@@ -214,8 +200,6 @@ i{
 /* CHAT FOOTER */
 .app-main .chat-footer{
     flex-basis: 70px;
-    display: flex;
-    align-items: center;
     padding: 10px 0;
     background-color: #ededed;
 }
@@ -224,9 +208,6 @@ i{
 .chat-footer .emoji,
 .chat-footer .phone{
     flex-basis: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .chat-footer .emoji i,
 .chat-footer .phone i{
@@ -236,10 +217,7 @@ i{
 
 /* Chat Input */
 .chat-footer .chat-input{
-    flex-grow: 1;
     padding: 15px;
-    height: 100%;
-    border: 1px solid #f7f7f7;
     border-radius: 5px;
 }
 .chat-footer .chat-input::placeholder{
