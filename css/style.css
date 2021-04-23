@@ -5,3 +5,30 @@
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
 }
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: linear-gradient(to bottom, #128C7E 0%, #128C7E 15%, #dbe0de 15%, #dbe0de 100%);
+}
+
+/* LAYOUT */
+.app-container{
+    display: flex;
+    width: 80%;
+    min-width: 900px;
+    height: 95%;
+    background-color: #fff;
+}
+
+/* CONTACTS */
+.contacts{
+    flex-basis: 35%;
+}
+
+/* CHAT */
+.chat{
+    flex-basis: 65%;
+    background-image: url('../img/mine.jpg');
+}
