@@ -67,13 +67,9 @@
             <!-- CONTACTS -->
             <section class="contacts">
                 <ul class="contacts-list">
-                    <li class="contact">
-                        <img class="avatar" src="./img/avatar_1.jpg" alt="avatar">
-                        <div class="contact-name">Michele</div>
-                    </li>
-                    <li class="contact">
-                        <img class="avatar" src="./img/avatar_2.jpg" alt="avatar">
-                        <div class="contact-name">Fabio</div>
+                    <li v-for="(contact, index) in contacts"class="contact">
+                        <img class="avatar" :src="'./img/avatar' + contact.avatar + '.jpg'" alt="avatar">
+                        <div class="contact-name">{{contact.name}}</div>
                     </li>
                 </ul>
             </section>
@@ -123,5 +119,9 @@
             </footer>
         </main>
     </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="./js/contatti.js"></script>
+    <script src="./js/script.js"></script>
 </body>
 </html>
