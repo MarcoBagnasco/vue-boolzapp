@@ -12,7 +12,7 @@
 
 <!-- FONTS -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
 
 <!-- ICONS -->
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' integrity='sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==' crossorigin='anonymous'/>
@@ -23,8 +23,61 @@
 <body>
 
     <div id="root" class="app-container">
-        <!-- CONTACTS -->
-        <aside class="contacts"></aside>
+        <!-- LEFT ASIDE -->
+        <aside class="left-aside">
+            <!-- ASIDE HEADER -->
+            <header class="aside-header">
+                <!-- User -->
+                <div class="user">
+                    <!-- User Avatar -->
+                    <div class="user-avatar">
+                        <img class="avatar" src="./img/avatar_io.jpg" alt="mine avatar">
+                        <span class="user-name">Nome Utente</span>
+                    </div>
+                    <!-- User Icons -->
+                    <div class="user-icons">
+                        <a href="#"><i class="fas fa-circle-notch"></i></a>
+                        <a href="#"><i class="fas fa-comment-alt"></i></a>
+                        <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                    </div>
+                </div>
+    
+                <!-- Notifications -->
+                <div class="notification">
+                    <!-- Bell Icon -->
+                    <i class="fas fa-bell-slash bell"></i>
+                    <!-- Notification Text -->
+                    <div class="notification-text">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <a href="#">Attiva notifiche desktop</a>
+                    </div>
+                </div>
+
+                <!-- Search Contacts -->
+                <div class="search-contacts">
+                    <div class="search-bar">
+                        <!-- Search Button -->
+                        <div class="search-btn"><i class="fas fa-search"></i></div>
+                        <!-- Search Input -->
+                        <input class="search-input" placeholder="Cerca o inizia una nuova chat" type="text">
+                    </div>
+                </div>
+            </header>
+
+            <!-- CONTACTS -->
+            <section class="contacts">
+                <ul class="contacts-list">
+                    <li class="contact">
+                        <img class="avatar" src="./img/avatar_1.jpg" alt="avatar">
+                        <div class="contact-name">Michele</div>
+                    </li>
+                    <li class="contact">
+                        <img class="avatar" src="./img/avatar_2.jpg" alt="avatar">
+                        <div class="contact-name">Fabio</div>
+                    </li>
+                </ul>
+            </section>
+        </aside>
 
         <!-- CHAT -->
         <section class="chat"></section>

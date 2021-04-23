@@ -10,7 +10,21 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: linear-gradient(to bottom, #128C7E 0%, #128C7E 15%, #dbe0de 15%, #dbe0de 100%);
+    font-weight: bold;
+    background-image: linear-gradient(to bottom, #32a093 0%, #32a093 20%, #dbe0de 20%, #dbe0de 100%);
+}
+i{
+    font-size: 1.4rem;
+    color: #bababa;
+}
+
+/* UTILITIES */
+/* Avatar */
+.avatar{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 50%;
 }
 
 /* LAYOUT */
@@ -18,14 +32,121 @@ body{
     display: flex;
     width: 80%;
     min-width: 900px;
-    height: 95%;
+    height: 93%;
     background-color: #fff;
 }
 
-/* CONTACTS */
-.contacts{
+/**************** LEFT ASIDE ****************/
+.left-aside{
     flex-basis: 35%;
 }
+
+/* ASIDE HEADER */
+/* User */
+.aside-header .user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #ededed;
+}
+/* User Avatar */
+.aside-header .user .user-avatar{
+    display: flex;
+    align-items: center;
+}
+/* User Icons */
+.aside-header .user .user-icons i{
+    margin-right: 17px
+}
+
+/* Notification */
+.aside-header .notification{
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #a2dffe;
+}
+/* Bell Icon */
+.notification i.bell{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+    color: #a2dffe;
+    background-color: #fff;
+    border-radius: 50%;
+}
+/* Notification Text */
+.notification .notification-text{
+    margin-left: 10px;
+}
+.notification .notification-text a{
+    font-size: 0.8rem;
+    color: #888;
+}
+
+/* Search Contancts */
+.search-contacts{
+    padding: 7px;
+    background-color: #fbfbfb;
+}
+.search-contacts .search-bar{
+    display: flex;
+    height: 36px;
+}
+/* Search Button */
+.search-bar .search-btn{
+    flex-basis: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #f7f7f7;
+    border-right: 0;
+}
+.search-bar .search-btn i{
+    font-size: 1rem;
+}
+/* Search Input */
+.search-bar .search-input{
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #f7f7f7;
+}
+.search-bar .search-input::placeholder{
+    font-size: 0.7rem;
+    letter-spacing: .5px;
+    color: #cecece;
+}
+
+/* CONTACTS */
+.contacts-list .contact{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #f2f2f2;
+    cursor: pointer;
+}
+.contacts-list .contact:last-child{
+    border-bottom: 0;
+}
+.contacts-list .contact .avatar{
+    height: 60px;
+    width: 60px;
+}
+
+
+
+
+
+
+
+
+
 
 /* CHAT */
 .chat{
