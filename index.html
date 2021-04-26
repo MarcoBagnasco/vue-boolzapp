@@ -99,10 +99,10 @@
 
             <!-- CHAT -->
             <section class="chat">
-                <div v-for="message in currentContact.messages" class="message-line flex" :class="{sentline: message.status === 'sent'}">
-                    <div class="message" :class="{sent: message.status === 'sent'}">
-                        <div class="message-text">{{message.message}}</div>
-                        <div class="message-time">{{message.date}}</div>
+                <div v-for="item in currentContact.messages" class="message-line flex" :class="{sentline: item.status === 'sent'}">
+                    <div class="message" :class="{sent: item.status === 'sent'}">
+                        <div class="message-text">{{item.message}}</div>
+                        <div class="message-time">{{item.date}}</div>
                     </div>
                 </div>
             </section>
@@ -112,7 +112,7 @@
                 <div class="emoji flex jc-center ai-center">
                     <a href="#"><i class="far fa-smile"></i></a>
                 </div>
-                <input class="input-text chat-input" type="text" placeholder="Scrivi un messaggio">
+                <input v-model="newMessage" class="input-text chat-input" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage" :disabled="currentContact.index === null">
                 <div class="phone flex jc-center ai-center">
                     <a href="#"><i class="fas fa-microphone"></i></a>
                 </div>

@@ -93,6 +93,7 @@ const app = new Vue({
         currentContact:{
             index: null,
         },
+        newMessage: '',
     },
     methods:{
         /**
@@ -115,6 +116,28 @@ const app = new Vue({
             } else {
                 return false;
             }
+        },
+
+        /**
+         * Send new message from chat input and received an answer from bot
+         */
+        sendMessage(){
+            this.currentContact.messages.push(
+                {
+                    date: '10/01/2020 15:30:55',
+                    message: this.newMessage,
+                    status: 'sent'
+                }
+            );
+            this.newMessage = '';
+            setTimeout(() => {
+                this.currentContact.messages.push(
+                    {
+                        date: '10/01/2020 15:30:55',
+                        message: 'ok',
+                        status: 'received'
+                    });
+            },1000);
         }
     },
 });
