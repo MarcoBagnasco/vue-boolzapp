@@ -151,6 +151,7 @@ body{
     padding: 10px 20px;
     border-bottom: 1px solid #f2f2f2;
     cursor: pointer;
+    transition: background-color .2s;
 }
 .contacts-list .contact:last-child{
     border-bottom: 0;
@@ -160,6 +161,14 @@ body{
     width: 60px;
     margin-right: 20px;
 }
+/* Contacts Interation */
+.contacts-list .contact:hover{
+    background-color: #eee;
+}
+.contacts-list .contact.active{
+    background-color: #ccc;
+}
+
 
 /**************** APP MAIN ****************/
 .app-main{
@@ -189,11 +198,10 @@ body{
     overflow-y: auto;
 }
 /* Message Line */
-.chat .sent-line,
-.chat .received-line{
+.chat .message-line{
     margin-bottom: 10px;
 }
-.chat .sent-line{
+.chat .message-line.sentline{
     justify-content: flex-end;
 }
 

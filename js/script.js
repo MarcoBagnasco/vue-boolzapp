@@ -1,3 +1,6 @@
+/**********************************
+ * BOOLZAPP
+ **********************************/
 // VUE INSTANCE
 const app = new Vue({
     el: '#root',
@@ -86,6 +89,32 @@ const app = new Vue({
                     }
                 ],
             },
-        ]
+        ],
+        currentContact:{
+            index: null,
+        },
+    },
+    methods:{
+        /**
+         * Show chat of a specific contact
+         * @param {number} index - contact position in the array
+         */
+        viewContact(index){
+            this.currentContact = {...this.contacts[index],
+            index: index};
+        },
+        
+        /**
+         * Return true if currentContact index is equal to contact index 
+         * @param {number} index contact position in the array
+         * @returns - boolean
+         */
+        isActive(index){
+            if(index === this.currentContact.index){
+                return true;
+            } else {
+                return false;
+            }
+        }
     },
 });
