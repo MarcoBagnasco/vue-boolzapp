@@ -53,6 +53,7 @@ body{
 .message{
     position: relative;
     width: 40%;
+    word-wrap: break-word;
     background-color: #fff;
     border-radius: 10px;
 }
