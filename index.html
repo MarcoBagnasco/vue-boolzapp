@@ -59,7 +59,7 @@
                         <!-- Search Button -->
                         <div class="search-btn flex jc-center ai-center"><i class="fas fa-search"></i></div>
                         <!-- Search Input -->
-                        <input class="input-text search-input" placeholder="Cerca o inizia una nuova chat" type="text">
+                        <input v-model="contactSearch" class="input-text search-input" placeholder="Cerca o inizia una nuova chat" type="text">
                     </div>
                 </div>
             </header>
@@ -67,7 +67,7 @@
             <!-- CONTACTS -->
             <section class="contacts">
                 <ul class="contacts-list">
-                    <li v-for="(contact, index) in contacts" class="contact flex ai-center" :class="{active: isActive(index)}" @click="viewContact(index)">
+                    <li v-show="isVisible(index)" v-for="(contact, index) in contacts" class="contact flex ai-center" :class="{active: isActive(index)}" @click="viewContact(index)">
                         <img class="avatar" :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
                         <div class="contact-name">{{contact.name}}</div>
                     </li>

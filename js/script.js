@@ -94,6 +94,7 @@ const app = new Vue({
             index: null,
         },
         newMessage: '',
+        contactSearch: '',
     },
     methods:{
         /**
@@ -107,7 +108,7 @@ const app = new Vue({
         
         /**
          * Return true if currentContact index is equal to contact index 
-         * @param {number} index contact position in the array
+         * @param {number} index - contact position in the array
          * @returns - boolean
          */
         isActive(index){
@@ -138,6 +139,21 @@ const app = new Vue({
                         status: 'received'
                     });
             },1000);
+        },
+
+        /**
+         * Return contacts if name contain search input value
+         * @param {number} index - contact position in the array
+         * @returns visible (boolean)
+         */
+        isVisible(index){
+            if(!this.contacts[index].name.toLowerCase().includes(this.contactSearch)){
+                this.contacts[index].visible = false;
+            } else {
+                this.contacts[index].visible = true;
+            }
+            console.log(this.contacts[index].visible);
+            return this.contacts[index].visible;
         }
     },
 });
