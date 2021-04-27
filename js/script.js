@@ -101,6 +101,99 @@ const app = new Vue({
                     }
                 ],
             },
+            {
+                name: 'Luigi',
+                avatar: '_5',
+                visible: true,
+                messages: [
+                    {
+                        date: '10/02/2021 18:30:51',
+                        message: 'Come stai oggi?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '10/02/2021 18:50:15',
+                        message: 'Un po\' meglio dai....',
+                        status: 'received'
+                    },
+                    {
+                        date: '10/01/2021 18:52:22',
+                        message: 'Bene..sono contento!',
+                        status: 'sent'
+                    }
+                ],
+            },
+            {
+                name: 'Fabrizio',
+                avatar: '_6',
+                visible: true,
+                messages: [
+                    {
+                        date: '19/11/2020 10:30:12',
+                        message: 'Riesci a portarmi il libro oggi?',
+                        status: 'sent'
+                    },
+                    {
+                        date: '19/11/2020 12:41:01',
+                        message: '...Quindi????',
+                        status: 'sent'
+                    },
+                    {
+                        date: '19/11/2020 12:58:00',
+                        message: 'Guarda che lo vedo se visualizzi il messaggio.....',
+                        status: 'sent'
+                    },
+                    {
+                        date: '19/11/2020 16:21:15',
+                        message: 'E\' un piacere parlare con te...😒',
+                        status: 'sent'
+                    }
+                ],
+            },
+            {
+                name: 'Maurizio',
+                avatar: '_7',
+                visible: true,
+                messages: [
+                    {
+                        date: '27/04/2021 11:35:55',
+                        message: 'Hai visto la partita ieri sera?',
+                        status: 'received'
+                    },
+                    {
+                        date: '27/04/2021 11:38:42',
+                        message: 'Purtroppo si....',
+                        status: 'sent'
+                    },
+                    {
+                        date: '27/04/2021 11:40:05',
+                        message: 'Ahahah....GRAMMI!!!',
+                        status: 'received'
+                    },
+                    {
+                        date: '27/04/2021 11:40:35',
+                        message: '🖕',
+                        status: 'sent'
+                    },
+                ],
+            },
+            {
+                name: 'Laura',
+                avatar: '_io',
+                visible: true,
+                messages: [
+                    {
+                        date: '22/04/2021 08:14:33',
+                        message: 'Buongiorno amore❤️❤️❤️',
+                        status: 'received'
+                    },
+                    {
+                        date: '22/04/2021 08:47:21',
+                        message: 'Buongiorno bella....a più tardi..😘😘',
+                        status: 'sent'
+                    },
+                ],
+            },
         ],
         // Active Contact
         currentContact:{
@@ -112,9 +205,28 @@ const app = new Vue({
         // Search input value
         contactSearch: '',
         // Emoji List
-        emoji: ['😀', '😄', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😋', '😝', '😜', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😔', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😮', '🥱', '😴', '🤤', '😪', '😵', '🤐', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '🤡', '💩', '💀', '☠️', '👽', '👾', '🤖', '🎃'],
+        emoji: [
+            '😀', '😄', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😋', '😝', '😜', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😔', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😮', '🥱', '😴', '🤤', '😪', '😵', '🤐', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '🤡', '💩', '💀', '☠️', '👽', '👾', '🤖', '🎃', '❤️', '👋', '👍', '👎', '🖕', '💪'
+        ],
         // Show/Hide Emoji List
         viewEmoji: false,
+        // Answers
+        answers:[
+            'Cosa significa???',
+            'Mi fa piacere',
+            '👍👍',
+            'Buonanotte..A domani',
+            'Non credo',
+            'Ciao',
+            'Si certo!',
+            'Bene grazie',
+            'Così così...',
+            'Grazie!',
+            'Auguri!!🥳',
+            'Non può piovere per sempre...',
+            '🤬🤬🤬'
+        ],
+
     },
     methods:{
         /**
@@ -125,6 +237,10 @@ const app = new Vue({
             this.currentContact = {...this.contacts[index],
             index: index,
             lastAccess: this.contacts[index].messages[this.contacts[index].messages.length - 1].date + ' (' + dayjs(this.contacts[index].messages[this.contacts[index].messages.length - 1].date, 'DD/MM/YYYY HH:mm:ss').fromNow() + ')'};
+            //Scroll chat to bottom
+            this.scrollBottom();
+            //Focus on chat input
+            this.$refs.messageInput.focus();
         },
         
         /**
@@ -156,17 +272,21 @@ const app = new Vue({
                 this.viewEmoji = false;
                 // Clear chat input
                 this.newMessage = '';
+                //Scroll chat to bottom
+                this.scrollBottom();
                 // Simulated answer
                 setTimeout(() => {
                     this.currentContact.messages.push(
                         {
                             date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
-                            message: 'ok',
+                            message: this.answers[this.randomNumber(0, this.answers.length - 1)],
                             status: 'received'
                         }
                     );
                     this.currentContact.lastAccess = dayjs().format('DD/MM/YYYY HH:mm:ss') + ' (' + dayjs().fromNow() + ')';
-                },1000);
+                    //Scroll chat to bottom
+                    this.scrollBottom();
+                },this.randomNumber(1000, 3500));
             }
         },
 
@@ -225,5 +345,24 @@ const app = new Vue({
                 this.$refs.messageInput.focus();
             }
         },
+
+        /**
+         * Scroll chat to bottom
+         */
+        scrollBottom(){
+            setTimeout(() => {
+                this.$refs.chatWindow.scrollTop =  this.$refs.chatWindow.scrollHeight;
+            }, 1);
+        },
+
+        /**
+         * Return random number between min and max
+         * @param {number} min 
+         * @param {number} max 
+         * @returns 
+         */
+        randomNumber(min, max){
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
     },
 });

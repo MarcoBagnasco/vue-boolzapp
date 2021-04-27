@@ -167,6 +167,10 @@ body{
 }
 
 /* CONTACTS */
+.contacts{
+    height: calc(100% - 200px);
+    overflow: auto;
+}
 .contacts-list .contact{
     height: 80px;
     padding: 10px 20px;

@@ -101,7 +101,7 @@
             </header>
 
             <!-- CHAT -->
-            <section class="chat">
+            <section class="chat" ref="chatWindow">
                 <div v-for="item in currentContact.messages" class="message-line flex" :class="{sentline: item.status === 'sent'}">
                     <div class="message" :class="{sent: item.status === 'sent'}">
                         <div class="message-text">{{item.message}}</div>
