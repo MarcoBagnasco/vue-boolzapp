@@ -38,6 +38,10 @@ body{
 .input-text:active{
     border: 2px solid #32a093c9;
 }
+/* Highlights */
+.highlight{
+    color: #61ccc0;
+}
 
 /* Icons */
 .icons-group a{
@@ -127,6 +131,7 @@ body{
     background-color: #fbfbfb;
 }
 .search-contacts .search-bar{
+    position: relative;
     height: 36px;
 }
 /* Search Button */
@@ -149,6 +154,16 @@ body{
     font-size: 0.7rem;
     letter-spacing: .5px;
     color: #cecece;
+}
+.search-bar i.cancel{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #ededed;
+    cursor: pointer;
+}
+.search-bar i.cancel:hover{
+    color: #bababa;
 }
 
 /* CONTACTS */
@@ -213,10 +228,30 @@ body{
 
 /* CHAT FOOTER */
 .app-main .chat-footer{
+    position: relative;
     flex-basis: 70px;
     padding: 10px 0;
     background-color: #ededed;
 }
+/* Emoji */
+ .emoji-list{
+     position: absolute;
+     width: 450px;
+     max-height: 250px;
+     padding: 10px;
+     bottom: 100%;
+     left: 0;
+     background-color: #ededed;
+     border: 1px solid #bbb;
+     border-radius: 10px;
+     overflow-y: auto;
+ }
+ .emoji-list span{
+     display: inline-block;
+     margin: 5px;
+     font-size: 20px;
+     cursor: pointer;
+ }
 
 /* Chat Footer Icons */
 .chat-footer .emoji,

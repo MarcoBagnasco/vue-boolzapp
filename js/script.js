@@ -5,6 +5,12 @@
 const app = new Vue({
     el: '#root',
     data: {
+        // User
+        user:{
+            name: 'Marco',
+            avatar: '_8',
+        },
+        // Contacts List
         contacts: [
             {
                 name: 'Michele',
@@ -90,11 +96,18 @@ const app = new Vue({
                 ],
             },
         ],
+        // Active Contact
         currentContact:{
             index: null,
         },
+        // New Message in chat input
         newMessage: '',
+        // Search input value
         contactSearch: '',
+        // Emoji List
+        emoji: ['😀', '😄', '😆', '😅', '😂', '🤣', '😊', '😇', '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😋', '😝', '😜', '🤨', '🧐', '🤓', '😎', '🤩', '🥳', '😏', '😒', '😔', '😕', '🙁', '☹️', '😣', '😖', '😫', '😩', '🥺', '😢', '😭', '😤', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰', '😓', '🤗', '🤔', '🤭', '🤫', '🤥', '😶', '😐', '😑', '😬', '🙄', '😮', '🥱', '😴', '🤤', '😪', '😵', '🤐', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑', '🤠', '😈', '👿', '🤡', '💩', '💀', '☠️', '👽', '👾', '🤖', '🎃'],
+        // Show/Hide Emoji List
+        viewEmoji: false,
     },
     methods:{
         /**
@@ -130,14 +143,19 @@ const app = new Vue({
                     status: 'sent'
                 }
             );
+            // Hide Emoji's List
+            this.viewEmoji = false;
+            // Clear chat input
             this.newMessage = '';
+            // Simulated answer
             setTimeout(() => {
                 this.currentContact.messages.push(
                     {
                         date: '10/01/2020 15:30:55',
                         message: 'ok',
                         status: 'received'
-                    });
+                    }
+                );
             },1000);
         },
 
@@ -152,8 +170,50 @@ const app = new Vue({
             } else {
                 this.contacts[index].visible = true;
             }
-            console.log(this.contacts[index].visible);
             return this.contacts[index].visible;
-        }
+        },
+
+        /**
+         * Highlights character name matching search input
+         * @param {char} character - character of contact name
+         * @returns boolean
+         */
+        isHighlight(character){
+            if(this.contactSearch.includes(character.toLowerCase())){
+                return true;
+            } else {
+                return false;
+            }
+        },
+        
+        /**
+         * Clear search input
+         */
+        clearSearch(){
+            this.contactSearch = '';
+        },
+
+        /**
+         * Show Emoji's List
+         */
+        showEmoji(){
+            this.viewEmoji = !this.viewEmoji;
+            //Focus on chat input
+            this.$refs.messageInput.focus();
+        },
+
+        /**
+         * Add Emoji to chat input
+         * @param {number} index - emoji position in the array
+         */
+        addEmoji(index){
+            // If chat input isn't disabled
+            if(this.currentContact.index !== null){
+                this.newMessage = this.newMessage + this.emoji[index];
+                //Focus on chat input
+                this.$refs.messageInput.focus();
+            }
+        },
+
     },
 });
