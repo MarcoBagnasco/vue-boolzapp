@@ -265,6 +265,7 @@ body{
 
 /* Chat Window */
 .app-main .chat{
+    position: relative;
     flex-grow: 1;
     padding: 50px 100px 20px;
     background-image: url('../img/mine.jpg');
@@ -276,6 +277,19 @@ body{
 }
 .chat .message-line.sentline{
     justify-content: flex-end;
+}
+/* Exit */
+.chat i.exit{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 20px;
+    color: #888;
+    cursor: pointer;
+    transition: color .3s;
+}
+.chat i.exit:hover{
+    color: #444;
 }
 
 /* CHAT FOOTER */

@@ -404,5 +404,12 @@ const app = new Vue({
                 }, 4000);
             }
         },
+
+        /**
+         * Close chat window
+         */
+        closeChat(){
+            this.currentContact.index = null;
+        },
     },
 });
