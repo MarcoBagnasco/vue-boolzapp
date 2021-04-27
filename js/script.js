@@ -234,6 +234,8 @@ const app = new Vue({
         avatarVisible: false,
         // User Avatar
         userAvatar: '_8',
+        // Microphone error
+        viewError: false,
 
     },
     methods:{
@@ -389,6 +391,18 @@ const app = new Vue({
         chooseAvatar(index){
             this.userAvatar = this.avatarList[index];
             this.avatarVisible = !this.avatarVisible;
+        },
+        
+        /**
+         * Show Microphone error
+         */
+        showError(){
+            if(this.currentContact.index !== null){
+                this.viewError = !this.viewError;
+                setTimeout(() => {
+                    this.viewError = !this.viewError;
+                }, 4000);
+            }
         },
     },
 });

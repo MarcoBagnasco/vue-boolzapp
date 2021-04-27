@@ -130,10 +130,14 @@
                 <div class="emoji flex jc-center ai-center" @click="showEmoji">
                     <a href="#"><i class="far fa-smile"></i></a>
                 </div>
-                <!-- Message Input -->
+                <!-- Chat Input -->
                 <input v-model.trim="newMessage" class="input-text chat-input" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage" :disabled="currentContact.index === null" ref="messageInput">
+                <!-- Microphone -->
                 <div class="phone flex jc-center ai-center">
-                    <a href="#"><i class="fas fa-microphone"></i></a>
+                    <a href="#"><i class="fas fa-microphone" @click="showError"></i></a>
+                </div>
+                <div v-show="viewError" class="error">
+                    Sorry!! The microphone is out of order 
                 </div>
             </footer>
         </main>

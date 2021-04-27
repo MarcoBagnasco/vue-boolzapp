@@ -324,3 +324,20 @@ body{
 .chat-footer .chat-input::placeholder{
     color: #bbb;
 }
+
+/* Microphone */
+.chat-footer .phone i{
+    cursor: not-allowed;
+}
+.chat-footer .error{
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    color: #f00;
+    font-size: 14px;
+    text-align: center;
+    background-color: #ededed;
+    border: 1px solid #bbbbbb;
+}
