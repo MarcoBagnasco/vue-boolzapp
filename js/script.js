@@ -1,6 +1,12 @@
 /**********************************
  * BOOLZAPP
  **********************************/
+// LOCALE DAYJS
+dayjs.locale('it');
+// PLUGIN DAYJS
+dayjs.extend(dayjs_plugin_customParseFormat);
+dayjs.extend(dayjs_plugin_relativeTime);
+
 // VUE INSTANCE
 const app = new Vue({
     el: '#root',
@@ -99,6 +105,7 @@ const app = new Vue({
         // Active Contact
         currentContact:{
             index: null,
+            lastAccess: '',
         },
         // New Message in chat input
         newMessage: '',
@@ -116,7 +123,8 @@ const app = new Vue({
          */
         viewContact(index){
             this.currentContact = {...this.contacts[index],
-            index: index};
+            index: index,
+            lastAccess: this.contacts[index].messages[this.contacts[index].messages.length - 1].date + ' (' + dayjs(this.contacts[index].messages[this.contacts[index].messages.length - 1].date, 'DD/MM/YYYY HH:mm:ss').fromNow() + ')'};
         },
         
         /**
@@ -136,27 +144,30 @@ const app = new Vue({
          * Send new message from chat input and received an answer from bot
          */
         sendMessage(){
-            this.currentContact.messages.push(
-                {
-                    date: '10/01/2020 15:30:55',
-                    message: this.newMessage,
-                    status: 'sent'
-                }
-            );
-            // Hide Emoji's List
-            this.viewEmoji = false;
-            // Clear chat input
-            this.newMessage = '';
-            // Simulated answer
-            setTimeout(() => {
+            if(this.newMessage !== ''){
                 this.currentContact.messages.push(
                     {
-                        date: '10/01/2020 15:30:55',
-                        message: 'ok',
-                        status: 'received'
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                        message: this.newMessage,
+                        status: 'sent'
                     }
                 );
-            },1000);
+                // Hide Emoji's List
+                this.viewEmoji = false;
+                // Clear chat input
+                this.newMessage = '';
+                // Simulated answer
+                setTimeout(() => {
+                    this.currentContact.messages.push(
+                        {
+                            date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
+                            message: 'ok',
+                            status: 'received'
+                        }
+                    );
+                    this.currentContact.lastAccess = dayjs().format('DD/MM/YYYY HH:mm:ss') + ' (' + dayjs().fromNow() + ')';
+                },1000);
+            }
         },
 
         /**
@@ -214,6 +225,5 @@ const app = new Vue({
                 this.$refs.messageInput.focus();
             }
         },
-
     },
 });

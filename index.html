@@ -88,7 +88,7 @@
                     <!-- Contact Data -->
                     <div class="contact-data">
                         <div class="contact-name">{{currentContact.name}}</div>
-                        <div class="contact-status">Ultimo accesso oggi alle 10.35</div>
+                        <div class="contact-status">Ultimo accesso {{currentContact.lastAccess}}</div>
                     </div>
                 </div>
 
@@ -127,7 +127,12 @@
     </div>
 
     <!-- JAVASCRIPT -->
-    <script src="./js/contatti.js"></script>
+    <!-- Day.js -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/locale/it.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/plugin/customParseFormat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/plugin/relativeTime.js"></script>
+    <!-- Main Script -->
     <script src="./js/script.js"></script>
 </body>
 </html>
