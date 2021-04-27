@@ -97,8 +97,28 @@ body{
 /* ASIDE HEADER */
 /* User */
 .aside-header .user{
+    position: relative;
     padding: 10px;
     background-color: #ededed;
+}
+.user .user-avatar img{
+    cursor: pointer;
+}
+/* Avatar List */
+.user .avatar-list{
+    position: absolute;
+    max-width: 215px;
+    top: 100%;
+    left: 0;
+    padding: 10px 0 10px 15px;
+    text-align: center;
+    background-color: #ededed;
+    border: 1px solid #bbbbbb;
+    border-radius: 5px;
+    z-index: 10;
+}
+.user .avatar-list img{
+    cursor: pointer;
 }
 
 /* Notification */

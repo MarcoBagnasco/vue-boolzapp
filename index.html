@@ -31,8 +31,12 @@
                 <div class="user flex jc-between ai-center">
                     <!-- User Avatar -->
                     <div class="user-avatar flex ai-center">
-                        <img class="avatar" :src="`./img/avatar${user.avatar}.jpg`" :alt="user.name">
+                        <img class="avatar" :src="`./img/avatar${userAvatar}.jpg`" :alt="user.name" @click="showAvatar">
                         <span class="user-name">{{user.name}}</span>
+                    </div>
+                    <!-- Avatar List -->
+                    <div v-show="avatarVisible" class="avatar-list">
+                        <img v-for="(item, index) in avatarList" :src="`./img/avatar${item}.jpg`" :alt="`avatar${item}`" class="avatar" @click="chooseAvatar(index)">
                     </div>
                     <!-- User Icons -->
                     <div class="icons-group user-icons">

@@ -14,7 +14,7 @@ const app = new Vue({
         // User
         user:{
             name: 'Marco',
-            avatar: '_8',
+            avatar: this.userAvatar,
         },
         // Contacts List
         contacts: [
@@ -226,6 +226,14 @@ const app = new Vue({
             'Non può piovere per sempre...',
             '🤬🤬🤬'
         ],
+        // Avatar list
+        avatarList: [
+            '_1', '_2', '_3', '_4', '_5', '_6', '_7', '_8', '_io', 
+        ],
+        // Show Avatar List
+        avatarVisible: false,
+        // User Avatar
+        userAvatar: '_8',
 
     },
     methods:{
@@ -328,9 +336,11 @@ const app = new Vue({
          * Show Emoji's List
          */
         showEmoji(){
-            this.viewEmoji = !this.viewEmoji;
-            //Focus on chat input
-            this.$refs.messageInput.focus();
+            if(this.currentContact.index !== null){
+                this.viewEmoji = !this.viewEmoji;
+                //Focus on chat input
+                this.$refs.messageInput.focus();
+            }
         },
 
         /**
@@ -363,6 +373,22 @@ const app = new Vue({
          */
         randomNumber(min, max){
             return Math.floor(Math.random() * (max - min + 1) + min);
-        }
+        },
+
+        /**
+         * Show Avatar List
+         */
+        showAvatar(){
+            this.avatarVisible = !this.avatarVisible;
+        },
+
+        /**
+         * Choose avatar for user
+         * @param {number} index - avatar position in avatar list
+         */
+        chooseAvatar(index){
+            this.userAvatar = this.avatarList[index];
+            this.avatarVisible = !this.avatarVisible;
+        },
     },
 });
