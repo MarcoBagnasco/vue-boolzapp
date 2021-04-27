@@ -216,6 +216,34 @@ body{
 }
 
 /* CHAT */
+/* Empty Chat */
+.app-main .empty-chat{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(223deg, rgba(50,160,147,0.49343487394957986) 0%, rgba(255,255,255,0.8211659663865546) 13%, rgba(50,160,147,0.4682247899159664) 25%, rgba(255,255,255,0.8463760504201681) 37%, rgba(50,160,147,0.5046393557422969) 50%, rgba(255,255,255,0.8687850140056023) 63%, rgba(50,160,147,0.5186449579831933) 75%, rgba(255,255,255,0.8827906162464986) 88%, rgba(50,160,147,0.5214460784313726) 100%);
+}
+.empty-chat h2{
+    margin-bottom: 70px;
+    font-size: 60px;
+    
+}
+.empty-chat .logo{
+    display: flex;
+    align-items: center;
+    font-size: 120px;
+    color: rgb(0, 21, 51);
+}
+.empty-chat .logo img{
+    width: 180px;
+}
+.empty-chat .logo span{
+    color: #32a093;
+}
+
+/* Chat Window */
 .app-main .chat{
     flex-grow: 1;
     padding: 50px 100px 20px;

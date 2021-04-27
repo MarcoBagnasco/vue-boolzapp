@@ -101,7 +101,16 @@
             </header>
 
             <!-- CHAT -->
-            <section class="chat" ref="chatWindow">
+            <!-- Empty Chat -->
+            <div v-show="currentContact.index == null" class="empty-chat">
+                <h2>Welcome to</h2>
+                <div class="logo">
+                    <img src="./img/Boolzapp logo.png" alt="boolzapp logo">
+                    Bool<span>zApp</span>
+                </div>
+            </div>
+            <!-- Chat Window -->
+            <section v-show="currentContact.index !== null" class="chat" ref="chatWindow">
                 <div v-for="item in currentContact.messages" class="message-line flex" :class="{sentline: item.status === 'sent'}">
                     <div class="message" :class="{sent: item.status === 'sent'}">
                         <div class="message-text">{{item.message}}</div>
