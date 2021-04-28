@@ -82,6 +82,8 @@
                         <div class="contact-name">
                             <span v-for="character in (contact.name.split(''))" :class="{highlight:isHighlight(character)}">{{ character }}</span>
                         </div>
+                        <!-- Online Status -->
+                        <div class="status" :class="{online: contact.on}"></div>
                     </li>
                 </ul>
             </section>
