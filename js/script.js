@@ -22,6 +22,7 @@ const app = new Vue({
                 name: 'Michele',
                 avatar: '_1',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -44,6 +45,7 @@ const app = new Vue({
                 name: 'Fabio',
                 avatar: '_2',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '20/03/2020 16:30:00',
@@ -66,6 +68,7 @@ const app = new Vue({
                 name: 'Samuele',
                 avatar: '_3',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '28/03/2020 10:10:40',
@@ -88,6 +91,7 @@ const app = new Vue({
                 name: 'Luisa',
                 avatar: '_4',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '10/01/2020 15:30:55',
@@ -105,6 +109,7 @@ const app = new Vue({
                 name: 'Luigi',
                 avatar: '_5',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '10/02/2021 18:30:51',
@@ -127,6 +132,7 @@ const app = new Vue({
                 name: 'Fabrizio',
                 avatar: '_6',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '19/11/2020 10:30:12',
@@ -154,6 +160,7 @@ const app = new Vue({
                 name: 'Maurizio',
                 avatar: '_7',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '27/04/2021 11:35:55',
@@ -181,6 +188,7 @@ const app = new Vue({
                 name: 'Laura',
                 avatar: '_io',
                 visible: true,
+                notify: 0,
                 messages: [
                     {
                         date: '22/04/2021 08:14:33',
@@ -236,7 +244,8 @@ const app = new Vue({
         userAvatar: '_8',
         // Microphone error
         viewError: false,
-
+        // Notification Toggle
+        activeNotify: false,
     },
     methods:{
         /**
@@ -244,6 +253,10 @@ const app = new Vue({
          * @param {number} index - contact position in the array
          */
         viewContact(index){
+            if(this.currentContact.index !== null){
+                this.contacts[this.currentContact.index].notify = 0;
+            }
+            
             this.currentContact = {...this.contacts[index],
             index: index,
             lastAccess: this.contacts[index].messages[this.contacts[index].messages.length - 1].date + ' (' + dayjs(this.contacts[index].messages[this.contacts[index].messages.length - 1].date, 'DD/MM/YYYY HH:mm:ss').fromNow() + ')'};
@@ -296,6 +309,7 @@ const app = new Vue({
                     this.currentContact.lastAccess = dayjs().format('DD/MM/YYYY HH:mm:ss') + ' (' + dayjs().fromNow() + ')';
                     //Scroll chat to bottom
                     this.scrollBottom();
+                    this.contacts[this.currentContact.index].notify++;
                 },this.randomNumber(1000, 3500));
             }
         },
@@ -410,6 +424,13 @@ const app = new Vue({
          */
         closeChat(){
             this.currentContact.index = null;
+        },
+        
+        /**
+         * Allow/Block notification
+         */
+        switchNotify(){
+            this.activeNotify = !this.activeNotify; 
         },
     },
 });

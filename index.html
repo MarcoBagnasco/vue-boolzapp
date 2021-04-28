@@ -49,7 +49,8 @@
                 <!-- Notifications -->
                 <div class="notification flex ai-center">
                     <!-- Bell Icon -->
-                    <i class="fas fa-bell-slash bell flex jc-center ai-center"></i>
+                    <i v-if="activeNotify" class="fas fa-bell bell flex jc-center ai-center" @click="switchNotify"></i>
+                    <i v-else class="fas fa-bell-slash bell flex jc-center ai-center" @click="switchNotify"></i>
                     <!-- Notification Text -->
                     <div class="notification-text">
                         <p>Ricevi notifiche di nuovi messaggi</p>
@@ -73,7 +74,11 @@
             <section class="contacts">
                 <ul class="contacts-list">
                     <li v-show="isVisible(index)" v-for="(contact, index) in contacts" class="contact flex ai-center" :class="{active: isActive(index)}" @click="viewContact(index)">
-                        <img class="avatar" :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                        <div class="contact-img">
+                            <img class="avatar" :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                            <!-- Notify -->
+                            <div v-show="activeNotify && contact.notify > 0" class="notify flex jc-center ai-center">{{contact.notify}}</div>
+                        </div>
                         <div class="contact-name">
                             <span v-for="character in (contact.name.split(''))" :class="{highlight:isHighlight(character)}">{{ character }}</span>
                         </div>
@@ -106,9 +111,9 @@
 
             <!-- CHAT -->
             <!-- Empty Chat -->
-            <div v-show="currentContact.index == null" class="empty-chat">
+            <div v-show="currentContact.index == null" class="empty-chat flex jc-center ai-center">
                 <h2>Welcome to</h2>
-                <div class="logo">
+                <div class="logo flex ai-center">
                     <img src="./img/Boolzapp logo.png" alt="boolzapp logo">
                     Bool<span>zApp</span>
                 </div>

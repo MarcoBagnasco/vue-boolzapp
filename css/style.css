@@ -201,10 +201,25 @@ body{
 .contacts-list .contact:last-child{
     border-bottom: 0;
 }
-.contacts-list .contact .avatar{
+.contacts-list .contact .contact-img{
+    position: relative;
+}
+.contact .contact-img .avatar{
     height: 60px;
     width: 60px;
     margin-right: 20px;
+}
+/* Notify */
+.contact .contact-img .notify{
+    position: absolute;
+    top: 0;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #32a093;
+    border-radius: 50%;
 }
 /* Contacts Interation */
 .contacts-list .contact:hover{
@@ -239,10 +254,7 @@ body{
 /* Empty Chat */
 .app-main .empty-chat{
     flex-grow: 1;
-    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     background: linear-gradient(223deg, rgba(50,160,147,0.49343487394957986) 0%, rgba(255,255,255,0.8211659663865546) 13%, rgba(50,160,147,0.4682247899159664) 25%, rgba(255,255,255,0.8463760504201681) 37%, rgba(50,160,147,0.5046393557422969) 50%, rgba(255,255,255,0.8687850140056023) 63%, rgba(50,160,147,0.5186449579831933) 75%, rgba(255,255,255,0.8827906162464986) 88%, rgba(50,160,147,0.5214460784313726) 100%);
 }
 .empty-chat h2{
@@ -251,8 +263,6 @@ body{
     
 }
 .empty-chat .logo{
-    display: flex;
-    align-items: center;
     font-size: 120px;
     color: rgb(0, 21, 51);
 }
