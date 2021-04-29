@@ -5,13 +5,21 @@
     box-sizing: border-box;
     font-family: 'Lato', sans-serif;
 }
-body{
+
+/**************** UTILITIES ****************/
+/* Layout */
+.background{
     height: 100vh;
     font-weight: bold;
     background-image: linear-gradient(to bottom, #32a093 0%, #32a093 15%, #dbe0de 15%, #dbe0de 100%);
 }
 
-/**************** UTILITIES ****************/
+.app-container{
+    width: 80%;
+    min-width: 900px;
+    height: 95%;
+    background-color: #fff;
+}
 
 /* Flex */
 .flex{
@@ -80,14 +88,59 @@ body{
     color: #bbb
 }
 
-/* Layout */
-.app-container{
-    width: 80%;
-    min-width: 900px;
-    height: 95%;
-    background-color: #fff;
-}
 
+/* Dark Theme Button */
+.dark-btn-group{
+    position: fixed;
+    top: 200px;
+    right: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.dark-btn-group i{
+    font-size: 30px;
+}
+.dark-btn-group i.sun{
+    color: #444;
+}
+.dark-btn-group i.moon{
+    color: #999;
+}
+.dark-btn-wrapper{
+    width: 40px;
+    height: 80px;
+    margin: 15px 0;
+    padding: 2px;
+    border: 2px solid #555;
+    border-radius: 30px;
+    font-size: 40px;
+}
+.background.darkTheme .dark-btn-wrapper{
+    border: 2px solid #bababa;
+}
+.dark-btn-wrapper .dark-btn-body{
+    position: relative;
+    height: 30px;
+    width: 100%;
+    background-color: #287467;
+    border-radius: 30px;
+    transition: height .4s;
+}
+.background.darkTheme .dark-btn-wrapper .dark-btn-body{
+    height: 100%;
+}
+.dark-btn-wrapper .dark-btn-body .dark-btn{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 30px;
+    background-color: #32a093;
+    border-radius: 50%;
+    cursor: pointer;
+}
 /**************** LEFT ASIDE ****************/
 .left-aside{
     flex-basis: 35%;
@@ -247,6 +300,7 @@ body{
 
 /**************** APP MAIN ****************/
 .app-main{
+    position: relative;
     flex-basis: 65%;
     flex-direction: column;
 }
@@ -290,7 +344,6 @@ body{
 
 /* Chat Window */
 .app-main .chat{
-    position: relative;
     flex-grow: 1;
     padding: 50px 100px 20px;
     background-image: url('../img/mine.jpg');
@@ -306,8 +359,8 @@ body{
 /* Exit */
 .chat i.exit{
     position: absolute;
-    top: 15px;
-    right: 20px;
+    top: 85px;
+    right: 35px;
     font-size: 20px;
     color: #888;
     cursor: pointer;
@@ -349,8 +402,7 @@ body{
 .chat-footer .phone{
     flex-basis: 100px;
 }
-.chat-footer .emoji i,
-.chat-footer .phone i{
+.chat-footer i{
     font-size: 1.5rem;
     color: #777;
 }
@@ -379,4 +431,128 @@ body{
     text-align: center;
     background-color: #ededed;
     border: 1px solid #bbbbbb;
+}
+
+/**************** DARK THEME ****************/
+/* Background */
+.background.darkTheme{
+    background-image: linear-gradient(to bottom, #242424 0%, #208070 15%, #000 15%, #000 100%);
+}
+
+/* Input Text */
+.background.darkTheme .input-text{
+    background-color: #ccc;
+}
+.background.darkTheme .input-text::placeholder{
+    color: #666;
+}
+.background.darkTheme .input-text[disabled]{
+    background-color: #444;
+}
+
+/*** LEFT ASIDE ***/
+/* ASIDE HEADER */
+/* User */
+.background.darkTheme .aside-header .user{
+    color: #bababa;
+    background-color: #252525;
+}
+/* Avatar List */
+.background.darkTheme .user .avatar-list{
+    background-color: #252525;
+}
+
+/* Notification */
+.background.darkTheme .aside-header .notification{
+    color: #fff;
+    background-color: #32a093;
+}
+/* Bell Icon */
+.background.darkTheme .notification i.bell{
+    color: #32a093;
+}
+/* Notification Text */
+.background.darkTheme .notification .notification-text a{
+    color: rgb(0, 21, 51);
+}
+
+/* Search Contancts */
+.background.darkTheme .search-contacts{
+    background-color: #252525;
+}
+/* Search Button */
+.background.darkTheme .search-bar .search-btn{
+    background-color: #ccc;
+}
+.background.darkTheme .search-bar .search-btn i{
+    color: #777;
+}
+/* Search Input */
+.background.darkTheme .search-bar i.cancel{
+    color: #888;
+}
+.background.darkTheme .search-bar i.cancel:hover{
+    color: #444;
+}
+
+/* CONTACTS */
+.background.darkTheme .contacts{
+    background-color: #545454;
+}
+.background.darkTheme .contacts-list .contact{
+    color: #fff;
+}
+
+/* Contacts Interation */
+.background.darkTheme .contacts-list .contact:hover{
+    background-color: #bbb;
+}
+.background.darkTheme .contacts-list .contact.active{
+    background-color: #999;
+}
+
+/*** APP MAIN ***/
+/* CHAT HEADER */
+.background.darkTheme .app-main .chat-header{
+    color: #bababa;
+    background-color: #252525;
+}
+
+/* CHAT */
+/* Empty Chat */
+.background.darkTheme .app-main .empty-chat{
+    background: linear-gradient(223deg, rgba(40,130,119,1) 0%, rgba(0,21,51,1) 13%, rgba(40,130,119,1) 25%, rgba(0,21,51,1) 37%, rgba(40,130,119,1) 50%, rgba(0,21,51,1) 63%, rgba(40,130,119,1) 75%, rgba(0,21,51,1) 88%, rgba(40,130,119,1) 100%);
+}
+.background.darkTheme .empty-chat .logo,
+.background.darkTheme .empty-chat h2{
+    color: #eee;
+}
+.background.darkTheme .empty-chat .logo span{
+    filter: drop-shadow(0 0 5px rgb(0,21,51));
+}
+
+/* Chat Window */
+.background.darkTheme .app-main .chat{
+    background-image: url('../img/mine-dark.jpg');
+}
+.background.darkTheme .chat i.exit{
+    color: #bababa;
+}
+.background.darkTheme .chat i.exit:hover{
+    color: #fff;
+}
+
+/* CHAT FOOTER */
+.background.darkTheme .app-main .chat-footer{
+    background-color: #252525;
+}
+
+/* Emoji */
+.background.darkTheme .emoji-list{
+    background-color: #252525;
+}
+
+/* Chat Footer Icons */
+.background.darkTheme .chat-footer i{
+    color: #bababa;
 }

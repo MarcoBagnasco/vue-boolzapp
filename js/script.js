@@ -254,6 +254,8 @@ const app = new Vue({
         viewError: false,
         // Notification Toggle
         activeNotify: false,
+        // Dark Theme
+        dark: false,
     },
     created(){
         this.isOnline();
@@ -331,7 +333,7 @@ const app = new Vue({
          * @returns visible (boolean)
          */
         isVisible(index){
-            if(!this.contacts[index].name.toLowerCase().includes(this.contactSearch)){
+            if(!this.contacts[index].name.toLowerCase().includes(this.contactSearch.toLowerCase())){
                 this.contacts[index].visible = false;
             } else {
                 this.contacts[index].visible = true;
@@ -463,6 +465,13 @@ const app = new Vue({
                 
                 this.contacts[this.randomNumber(0, this.contacts.length - 1)].on = false;
             }, 3000);
-        }
+        },
+
+        /**
+         * Switch between Light and Dark Theme
+         */
+        switchTheme(){
+            this.dark = ! this.dark;
+        },
     },
 });

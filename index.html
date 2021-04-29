@@ -20,135 +20,146 @@
 <!-- STYLE -->
 <link rel="stylesheet" href="./css/style.css">
 
-<body class="flex jc-center ai-center">
+<body>
 
-    <div id="root" class="app-container flex">
-        <!-- LEFT ASIDE -->
-        <aside class="left-aside">
-            <!-- ASIDE HEADER -->
-            <header class="aside-header">                 
-                <!-- User -->
-                <div class="user flex jc-between ai-center">
-                    <!-- User Avatar -->
-                    <div class="user-avatar flex ai-center">
-                        <img class="avatar" :src="`./img/avatar${userAvatar}.jpg`" :alt="user.name" @click="showAvatar">
-                        <span class="user-name">{{user.name}}</span>
+    <div id="root"  class="background flex jc-center ai-center" :class="{darkTheme: dark}">
+        <div class="app-container flex">
+            <!-- Dark Theme Button -->
+            <div class="dark-btn-group">
+                <i class="fas fa-sun sun"></i>
+                <div class="dark-btn-wrapper">
+                    <div class="dark-btn-body">
+                        <div class="dark-btn" @click="switchTheme"></div>
                     </div>
-                    <!-- Avatar List -->
-                    <div v-show="avatarVisible" class="avatar-list">
-                        <img v-for="(item, index) in avatarList" :src="`./img/avatar${item}.jpg`" :alt="`avatar${item}`" class="avatar" @click="chooseAvatar(index)">
+                </div>
+                <i class="fas fa-moon moon"></i>
+            </div>
+            
+            <!-- LEFT ASIDE -->
+            <aside class="left-aside">
+                <!-- ASIDE HEADER -->
+                <header class="aside-header">
+                    <!-- User -->
+                    <div class="user flex jc-between ai-center">
+                        <!-- User Avatar -->
+                        <div class="user-avatar flex ai-center">
+                            <img class="avatar" :src="`./img/avatar${userAvatar}.jpg`" :alt="user.name" @click="showAvatar">
+                            <span class="user-name">{{user.name}}</span>
+                        </div>
+                        <!-- Avatar List -->
+                        <div v-show="avatarVisible" class="avatar-list">
+                            <img v-for="(item, index) in avatarList" :src="`./img/avatar${item}.jpg`" :alt="`avatar`" class="avatar" @click="chooseAvatar(index)">
+                        </div>
+                        <!-- User Icons -->
+                        <div class="icons-group user-icons">
+                            <a href="#"><i class="fas fa-circle-notch"></i></a>
+                            <a href="#"><i class="fas fa-comment-alt"></i></a>
+                            <a href="#"><i class="fas fa-ellipsis-v"></i></a>
+                        </div>
                     </div>
-                    <!-- User Icons -->
-                    <div class="icons-group user-icons">
-                        <a href="#"><i class="fas fa-circle-notch"></i></a>
-                        <a href="#"><i class="fas fa-comment-alt"></i></a>
+        
+                    <!-- Notifications -->
+                    <div class="notification flex ai-center">
+                        <!-- Bell Icon -->
+                        <i v-if="activeNotify" class="fas fa-bell bell flex jc-center ai-center" @click="switchNotify"></i>
+                        <i v-else class="fas fa-bell-slash bell flex jc-center ai-center" @click="switchNotify"></i>
+                        <!-- Notification Text -->
+                        <div class="notification-text">
+                            <p>Ricevi notifiche di nuovi messaggi</p>
+                            <a href="#">Attiva notifiche desktop</a>
+                        </div>
+                    </div>
+                    <!-- Search Contacts -->
+                    <div class="search-contacts">
+                        <div class="search-bar flex">
+                            <!-- Search Button -->
+                            <div class="search-btn flex jc-center ai-center"><i class="fas fa-search"></i></div>
+                            <!-- Search Input -->
+                            <input v-model.trim="contactSearch" class="input-text search-input" placeholder="Cerca o inizia una nuova chat" type="text">
+                            <i class="fas fa-times cancel" @click="clearSearch"></i>
+                        </div>
+                    </div>
+                </header>
+                <!-- CONTACTS -->
+                <section class="contacts">
+                    <ul class="contacts-list">
+                        <li v-show="isVisible(index)" v-for="(contact, index) in contacts" class="contact flex ai-center" :class="{active: isActive(index)}" @click="viewContact(index)">
+                            <div class="contact-img">
+                                <img class="avatar" :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
+                                <!-- Notify -->
+                                <div v-show="activeNotify && contact.notify > 0" class="notify flex jc-center ai-center">{{contact.notify}}</div>
+                            </div>
+                            <div class="contact-name">
+                                <span v-for="character in (contact.name.split(''))" :class="{highlight:isHighlight(character)}">{{ character }}</span>
+                            </div>
+                            <!-- Online Status -->
+                            <div class="status" :class="{online: contact.on}"></div>
+                        </li>
+                    </ul>
+                </section>
+            </aside>
+            <!-- APP MAIN -->
+            <main class="app-main flex">
+                <!-- CHAT HEADER -->
+                <header class="chat-header flex jc-between ai-center">
+                    <!-- Conversation Contact -->
+                    <div v-show="currentContact.index !== null" class="conv-contact flex ai-center">
+                        <img class="avatar" :src="`./img/avatar${currentContact.avatar}.jpg`" :alt="currentContact.name">
+                        <!-- Contact Data -->
+                        <div class="contact-data">
+                            <div class="contact-name">{{currentContact.name}}</div>
+                            <div class="contact-status">Ultimo accesso {{currentContact.lastAccess}}</div>
+                        </div>
+                    </div>
+                    <!-- Chat Header Icons -->
+                    <div v-show="currentContact.index !== null" class="icons-group chat-header-icons">
+                        <a href="#"><i class="fas fa-search"></i></a>
+                        <a href="#"><i class="fas fa-paperclip"></i></a>
                         <a href="#"><i class="fas fa-ellipsis-v"></i></a>
                     </div>
-                </div>
-    
-                <!-- Notifications -->
-                <div class="notification flex ai-center">
-                    <!-- Bell Icon -->
-                    <i v-if="activeNotify" class="fas fa-bell bell flex jc-center ai-center" @click="switchNotify"></i>
-                    <i v-else class="fas fa-bell-slash bell flex jc-center ai-center" @click="switchNotify"></i>
-                    <!-- Notification Text -->
-                    <div class="notification-text">
-                        <p>Ricevi notifiche di nuovi messaggi</p>
-                        <a href="#">Attiva notifiche desktop</a>
+                </header>
+                <!-- CHAT -->
+                <!-- Empty Chat -->
+                <div v-show="currentContact.index == null" class="empty-chat flex jc-center ai-center">
+                    <h2>Welcome to</h2>
+                    <div class="logo flex ai-center">
+                        <!-- Logo -->
+                        <img v-if="!dark" src="./img/Boolzapp logo.png" alt="boolzapp logo">
+                        <!-- Dark Logo -->
+                        <img v-else src="./img/Boolzapp logo_2.png" alt="boolzapp logo">
+
+                        Bool<span>zApp</span>
                     </div>
                 </div>
-
-                <!-- Search Contacts -->
-                <div class="search-contacts">
-                    <div class="search-bar flex">
-                        <!-- Search Button -->
-                        <div class="search-btn flex jc-center ai-center"><i class="fas fa-search"></i></div>
-                        <!-- Search Input -->
-                        <input v-model.trim="contactSearch" class="input-text search-input" placeholder="Cerca o inizia una nuova chat" type="text">
-                        <i class="fas fa-times cancel" @click="clearSearch"></i>
-                    </div>
-                </div>
-            </header>
-
-            <!-- CONTACTS -->
-            <section class="contacts">
-                <ul class="contacts-list">
-                    <li v-show="isVisible(index)" v-for="(contact, index) in contacts" class="contact flex ai-center" :class="{active: isActive(index)}" @click="viewContact(index)">
-                        <div class="contact-img">
-                            <img class="avatar" :src="'./img/avatar' + contact.avatar + '.jpg'" :alt="contact.name">
-                            <!-- Notify -->
-                            <div v-show="activeNotify && contact.notify > 0" class="notify flex jc-center ai-center">{{contact.notify}}</div>
+                <!-- Chat Window -->
+                <section v-show="currentContact.index !== null" class="chat" ref="chatWindow">
+                    <div v-for="item in currentContact.messages" class="message-line flex" :class="{sentline: item.status === 'sent'}">
+                        <div class="message" :class="{sent: item.status === 'sent'}">
+                            <div class="message-text">{{item.message}}</div>
+                            <div class="message-time">{{item.date}}</div>
                         </div>
-                        <div class="contact-name">
-                            <span v-for="character in (contact.name.split(''))" :class="{highlight:isHighlight(character)}">{{ character }}</span>
-                        </div>
-                        <!-- Online Status -->
-                        <div class="status" :class="{online: contact.on}"></div>
-                    </li>
-                </ul>
-            </section>
-        </aside>
-
-        <!-- APP MAIN -->
-        <main class="app-main flex">
-            <!-- CHAT HEADER -->
-            <header class="chat-header flex jc-between ai-center">
-                <!-- Conversation Contact -->
-                <div v-show="currentContact.index !== null" class="conv-contact flex ai-center">
-                    <img class="avatar" :src="`./img/avatar${currentContact.avatar}.jpg`" :alt="currentContact.name">
-                    <!-- Contact Data -->
-                    <div class="contact-data">
-                        <div class="contact-name">{{currentContact.name}}</div>
-                        <div class="contact-status">Ultimo accesso {{currentContact.lastAccess}}</div>
                     </div>
-                </div>
-
-                <!-- Chat Header Icons -->
-                <div v-show="currentContact.index !== null" class="icons-group chat-header-icons">
-                    <a href="#"><i class="fas fa-search"></i></a>
-                    <a href="#"><i class="fas fa-paperclip"></i></a>
-                    <a href="#"><i class="fas fa-ellipsis-v"></i></a>
-                </div>
-            </header>
-
-            <!-- CHAT -->
-            <!-- Empty Chat -->
-            <div v-show="currentContact.index == null" class="empty-chat flex jc-center ai-center">
-                <h2>Welcome to</h2>
-                <div class="logo flex ai-center">
-                    <img src="./img/Boolzapp logo.png" alt="boolzapp logo">
-                    Bool<span>zApp</span>
-                </div>
-            </div>
-            <!-- Chat Window -->
-            <section v-show="currentContact.index !== null" class="chat" ref="chatWindow">
-                <div v-for="item in currentContact.messages" class="message-line flex" :class="{sentline: item.status === 'sent'}">
-                    <div class="message" :class="{sent: item.status === 'sent'}">
-                        <div class="message-text">{{item.message}}</div>
-                        <div class="message-time">{{item.date}}</div>
+                    <i class="fas fa-times exit" @click="closeChat"></i>
+                </section>
+                <!-- CHAT FOOTER -->
+                <footer class="chat-footer flex ai-center">
+                    <!-- Emoji -->
+                    <div v-show="viewEmoji" class="emoji-list"><span v-for="(item, index) in emoji" @click="addEmoji(index)">{{item}}</span></div>
+                    <div class="emoji flex jc-center ai-center" @click="showEmoji">
+                        <a href="#"><i class="far fa-smile"></i></a>
                     </div>
-                </div>
-                <i class="fas fa-times exit" @click="closeChat"></i>
-            </section>
-
-            <!-- CHAT FOOTER -->
-            <footer class="chat-footer flex ai-center">
-                <!-- Emoji -->
-                <div v-show="viewEmoji" class="emoji-list"><span v-for="(item, index) in emoji" @click="addEmoji(index)">{{item}}</span></div>
-                <div class="emoji flex jc-center ai-center" @click="showEmoji">
-                    <a href="#"><i class="far fa-smile"></i></a>
-                </div>
-                <!-- Chat Input -->
-                <input v-model.trim="newMessage" class="input-text chat-input" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage" :disabled="currentContact.index === null" ref="messageInput">
-                <!-- Microphone -->
-                <div class="phone flex jc-center ai-center">
-                    <a href="#"><i class="fas fa-microphone" @click="showError"></i></a>
-                </div>
-                <div v-show="viewError" class="error">
-                    Sorry!! The microphone is out of order 
-                </div>
-            </footer>
-        </main>
+                    <!-- Chat Input -->
+                    <input v-model.trim="newMessage" class="input-text chat-input" type="text" placeholder="Scrivi un messaggio" @keyup.enter="sendMessage" :disabled="currentContact.index === null" ref="messageInput">
+                    <!-- Microphone -->
+                    <div class="phone flex jc-center ai-center">
+                        <a href="#"><i class="fas fa-microphone" @click="showError"></i></a>
+                    </div>
+                    <div v-show="viewError" class="error">
+                        Sorry!! The microphone is out of order
+                    </div>
+                </footer>
+            </main>
+        </div>
     </div>
 
     <!-- JAVASCRIPT -->
