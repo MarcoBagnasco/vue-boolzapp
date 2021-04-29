@@ -92,8 +92,8 @@
 /* Dark Theme Button */
 .dark-btn-group{
     position: fixed;
-    top: 200px;
-    right: 100px;
+    top: 30%;
+    right: 5%;
     display: flex;
     flex-direction: column;
     align-items: center;
